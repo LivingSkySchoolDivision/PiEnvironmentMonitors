@@ -1,11 +1,16 @@
-import Adafruit_DHT
 import datetime
+import board
+import adafruit_dht
+import socket
 
-DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 14
+dhtDevice = adafruit_dht.DHT11(board.D14)
 
-humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+humidity = dhtDevice.humidity
+temperature = dhtDevice.temperature
+
 print("{");
+print("\"Hostname\": \"" + str(socket.gethostname()) + "\",")
+
 if temperature is not None:
  print(" \"TemperatureCelsius\": {0:0.1f},".format(temperature));
 else:
