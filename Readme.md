@@ -1,69 +1,60 @@
-# Setting up the script on a raspberry pi
-
-# Initial set up on Raspberry pi
+# Setting up a new temperature monitor on a raspberry pi
 
 TODO
 
-## Make a non-default user
+## Change the password for the pi user
 
-`sudo adduser lssdadmin`
-Give it a strong password, record it in KeePass
 
-Add to sudoers group
-`sudo usermod -aG sudo lssdadmin`
-
-Enable sudo without password
-`sudo nano /etc/suders.d/lssd`
-```
-lssdadmin ALL=(ALL) NOPASSWD:ALL
-```
-
-## Enable UFW
+## Enable and configure UFW
 
 1. `ufw allow 22`
 2. `ufw allow 80`
 3. `ufw enable`
 
-This guide assumes you have a raspberry pi already set up, with Python installed.
+## Install required software and libraries
 
-The scripts in this repository require **Python3**, and will not work with Python2.
+```
+sudo apt-get update
+sudo apt-get install python3-pip libgpiod2 nginx
+pip3 install adafruit-circuitpython-dht
+```
 
 ## Create a directory for the script to live in
 `mkdir /temperature`
 
-## Install and set up NGINX
-
-1. `sudo apt-get update`
-2. `sudo apt-get install nginx`
-
-Edit the configuration
-
-`sudo nano /etc/nginx/sites-enabled/default`
-
-You can replace the entire default file with the following:
+## Use git to clone this repository into your new folder
 ```
-server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-        root /var/www/html;
-        index index.json
-        server_name _;
-        location / {
-                try_files $uri $uri/ =404;
-        }
-}
+cd /temperature
+git clone https://sourcecode.lskysd.ca/PublicCode/ServerRoomTemperatureMonitors.git .
+```
+
+## Replace Nginx config with a custom one
+A custom nginx configuration file is included in this repository ([nginx.conf](nginx.conf))
+```
+sudo rm /etc/nginx/sites-enabled/default
+sudo cp ./nginx.conf /etc/nginx/sites-enabled/
 ```
 
 Restart nginx
-`sudo service nginx restart`
+```
+sudo service nginx restart
+```
+## Allow the pi user write access to the nginx www root
+
+```
+sudo chown pi /var/www/html
+```
 
 ## Set up crontab
-Log in a a **non-root** user (the script will fail if it's run by root)
-`crontab -e`
+**As the *pi* user**, run `crontab -e`
 
 (Choose nano if it prompts you)
 
-Add the following line at the bottom
+Add the following line at the bottom:
 ```
 * * * * *  python3 /temperature/GenTempJSON.py > /var/www/html/index.json
 ```
+
+## Finished!
+
+Your raspberry pi should now be checking the temperature every minute, and serving that data over http in json format.
