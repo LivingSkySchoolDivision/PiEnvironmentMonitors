@@ -6,10 +6,10 @@ TODO
 
 
 ## Enable and configure UFW
-
-1. `ufw allow 22`
-2. `ufw allow 80`
-3. `ufw enable`
+1. `sudo apt install ufw`
+2. `sudo ufw allow 22`
+3. `sudo ufw allow 80`
+4. `sudo ufw enable`
 
 ## Install required software and libraries
 
@@ -20,7 +20,10 @@ pip3 install adafruit-circuitpython-dht
 ```
 
 ## Create a directory for the script to live in
-`mkdir /temperature`
+```
+sudo mkdir /temperature
+sudo chown pi /temperature
+```
 
 ## Use git to clone this repository into your new folder
 ```
