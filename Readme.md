@@ -28,6 +28,18 @@ cd /temperature
 git clone https://sourcecode.lskysd.ca/PublicCode/ServerRoomTemperatureMonitors.git .
 ```
 
+## Rename the appropriate script
+
+This repository contains several scripts for different sensors (The DHT11 and DHT22). 
+
+Choose the appropriate one for the sensor that you are using, and copy that file to `GenTempJSON.py`. Your copy will be the script that the system actually uses.
+
+Keep in mind that Linux is case-sensitive - if you name your file differently, you will need to use your version of the filename when editing the crontab (below).
+
+```
+cp GenTempJSON.py.DHT11 GenTempJSON.py
+```
+
 ## Replace Nginx config with a custom one
 A custom nginx configuration file is included in this repository ([nginx.conf](nginx.conf))
 ```
