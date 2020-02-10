@@ -80,7 +80,7 @@ for sensor in sensors:
 print(" ],")
 print(" \"Troubleshooting\" : {")
 print("  \"LastScan\": \"" + str(lastscan) + "\",")
-print("  \"Errormessage\": \"" + str(errmessage) + "\",")
+print("  \"Errormessage\": \"" + str(errmessage) + "\"")
 print(" }")
 
 print ("}")
