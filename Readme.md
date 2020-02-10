@@ -11,10 +11,15 @@ sudo apt full-upgrade
 ## Enable SSH access
 Follow the instructions found at https://www.raspberrypi.org/documentation/remote-access/ssh/
 
-## Change the password for the pi user
+## Configure Raspbian (hostname, static IP, password)
+
+Use the built-in `raspi-config` menu to:
+1. Change the password to the `pi` user to something unique
+2. Set a static IP
+3. Change the hostname to something memorable
 
 ```
-passwd
+sudo raspi-config
 ```
 
 ## Enable and configure UFW
