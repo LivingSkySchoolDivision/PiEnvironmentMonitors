@@ -70,7 +70,7 @@ print(" \"Sensors\": [")
 
 for sensor in sensors:
   print(" {")
-  print(" \"Name\": " + str(sensor["Name"]) + ",")
+  print(" \"Name\": \"" + str(sensor["Name"]) + "\",")
   print(" \"TemperatureCelsius\": {0:0.1f},".format(sensor["Temperature"]))
   print(" \"Humidity\": {0:0.1f}".format(sensor["Humidity"]))
   print(" \"ErrorMessage\": \"" + str(sensor["ErrorMessage"]) + "\"")
