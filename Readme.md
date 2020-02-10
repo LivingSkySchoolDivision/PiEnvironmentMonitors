@@ -2,6 +2,15 @@
 
 Set up a Raspberry pi with *Raspbian Buster Lite*, or the most recent headless (desktop-less) distribution of Raspbian.
 
+Update your OS before continuing
+```
+sudo apt update
+sudo apt full-upgrade
+```
+
+## Enable SSH access
+Follow the instructions found at https://www.raspberrypi.org/documentation/remote-access/ssh/
+
 ## Change the password for the pi user
 
 ```
