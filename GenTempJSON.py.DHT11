@@ -3,23 +3,33 @@ import board
 import adafruit_dht
 import socket
 
+# Use GPIO port 14 for sensor data
 dhtDevice = adafruit_dht.DHT11(board.D14)
 
-humidity = dhtDevice.humidity
-temperature = dhtDevice.temperature
+# Set default values for variables
+# These are what are set if the rest of the script is unable to set them
+hostname = "Unknown"
+humidity = -999
+temperature = -999
+errmessage = ""
+err = "false"
+lastscan = datetime.datetime.now(datetime.timezone.utc)
+
+
+# Try to set variables to their actual values
+try:
+  hostname = str(socket.gethostname())
+  humidity = dhtDevice.humidity
+  temperature = dhtDevice.temperature
+except Exception as e:
+  errmessage = str(e)
+  err = "true"
 
 print("{");
-print("\"Hostname\": \"" + str(socket.gethostname()) + "\",")
-
-if temperature is not None:
- print(" \"TemperatureCelsius\": {0:0.1f},".format(temperature));
-else:
- print(" \"TemperatureCelsius\": -999.0,");
-
-if humidity is not None:
- print(" \"Humidity\": {0:0.1f},".format(humidity));
-else:
- print(" \"Humidity\": -1,");
-
-print(" \"ScanTimeUTC\": \"" + str(datetime.datetime.utcnow()) + "\"");
+print(" \"Hostname\": \"" + hostname + "\",")
+print(" \"TemperatureCelsius\": {0:0.1f},".format(temperature))
+print(" \"Humidity\": {0:0.1f},".format(humidity))
+print(" \"LastScan\": \"" + str(lastscan) + "\",")
+print(" \"errmessage\": \"" + str(errmessage) + "\",")
+print(" \"iserror\": " + err)
 print ("}");
