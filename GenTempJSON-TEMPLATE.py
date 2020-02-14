@@ -17,7 +17,7 @@ import gpiozero
 # This script supports multiple sensors, that can each be either a DHT11 or a DHT22
 
 sensors = [
-        { "Name" : "Sensor-001", "Sensor" : adafruit_dht.DHT11(board.D14) },
+        { "Name" : "Sensor-001", "Sensor" : adafruit_dht.DHT22(board.D14) },
   ]
 
 
