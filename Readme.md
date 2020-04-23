@@ -45,7 +45,7 @@ sudo chown pi /temperature
 ## Use git to clone this repository into your new folder
 ```
 cd /temperature
-git clone https://sourcecode.lskysd.ca/PublicCode/ServerRoomTemperatureMonitors.git .
+git clone https://github.com/LivingSkySchoolDivision/PiEnvironmentMonitors.git .
 ```
 Make sure you keep the period at the end, it's important.
 
