@@ -20,6 +20,10 @@ sensors = [
         { "Name" : "S001", "Description" : "Adafruit DHT22", "Sensor" : adafruit_dht.DHT22(board.D14) },
 ]
 
+# System Description
+# Enter a brief description of where this device is. This is passed on through to the JSON.
+# This must be valid JSON so do NOT use quotation marks or special characters here.
+systemdescription = "Explain where the sensor is here."
 
 # #################################################################
 # You shouldn't need to customize anything below this line
@@ -95,7 +99,7 @@ for sensor in sensors:
 print("{");
 print(" \"System\": {")
 print("  \"Name\": \"" + hostname + "\",")
-print("  \"Description\": \"" + hostname + "\",")
+print("  \"Description\": \"" + systemdescription + "\",")
 print("  \"Model\": \"" + model + "\",")
 print("  \"Serial\": \"" + serial + "\",")
 print("  \"UptimeSeconds\": " + str(uptime) + "")
