@@ -63,7 +63,7 @@ hostname = "Unknown"
 errmessage = ""
 cputemp = -999
 uptime = -999
-lastscan = datetime.datetime.now(datetime.timezone.utc)
+lastscan = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 model = "Unknown"
 serial = "Unknown"
 
