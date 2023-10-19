@@ -2,6 +2,8 @@
 
 Set up a Raspberry pi with *Raspbian Buster Lite*, or the most recent headless (desktop-less) distribution of Raspbian.
 
+You **must** complete these steps as a sudoable user from the start - Python components will fail to run if you don't, and you may have to start over.
+
 Update your OS before continuing
 ```
 sudo apt update
@@ -32,8 +34,9 @@ sudo raspi-config
 
 ```
 sudo apt update
-sudo apt install git python3-pip libgpiod2 nginx
-pip3 install adafruit-circuitpython-dht gpiozero
+sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
+sudo apt install git python3-pip libgpiod2 nginx python3-libgpiod
+pip3 install adafruit-circuitpython-dht gpiozero adafruit_dht
 ```
 
 ## Create a directory for the script to live in
